@@ -4,6 +4,7 @@ const score = document.getElementById("score");
 let squares = [];
 let currentSnake = [2, 1, 0];
 let direction = 1;
+let width = 10;
 
 function createGrid() {
   //create 100 of these elements with for loop
@@ -35,3 +36,20 @@ function move() {
 }
 
 move();
+
+let timerId = setInterval(move, 1000);
+
+//39 is right, 38 is up, 37 is left, 40 is down
+function control(e) {
+  if (e.keyCode === 39) {
+    direction = 1; // right
+  } else if (e.keyCode === 38) {
+    direction = -width; // up
+  } else if (e.keyCode === 37) {
+    direction = -1; // left
+  } else if (e.keyCode === 40) {
+    direction = +width; // down
+  }
+}
+
+document.addEventListener("keydown", control);
